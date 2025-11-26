@@ -1,130 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Confession Letter</title>
 <style>
-  body {
-    background: #ffeef8; /* soft pastel background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    flex-direction: column;
-  }
+body {
+  margin:0; 
+  font-family: 'Segoe UI', sans-serif;
+  background: #ffeef2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  flex-direction:column;
+}
 
-  .envelope {
-    width: 250px;
-    height: 150px;
-    background: #ffb6c1; /* baby pink */
-    position: relative;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    margin-bottom: 50px;
-    transition: transform 0.3s;
-    overflow: hidden; /* keeps letter hidden until slide */
-  }
-
-  .envelope:hover {
-    transform: scale(1.05);
-  }
-
-  .flap {
-    width: 0;
-    height: 0;
-    border-left: 125px solid transparent;
-    border-right: 125px solid transparent;
-    border-bottom: 80px solid #ffa6b0; /* flap color */
-    position: absolute;
-    top: -80px;
-    left: 0;
-    transition: transform 0.5s ease;
-    transform-origin: top center;
-  }
-
-  /* flap open state */
-  .flap.open {
-    transform: rotateX(180deg);
-  }
-
-  /* LETTER */
-  .letter {
-    width: 260px;
-    padding: 15px;
-    background: #fff0f5; /* very soft pink */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    position: relative;
-    bottom: -300px; /* start hidden below envelope */
-    opacity: 0;
-    transition: bottom 0.6s ease, opacity 0.6s ease;
-  }
-
-  .letter.show {
-    bottom: 0; /* slide up */
-    opacity: 1;
-  }
-
-  .letter h3 {
-    color: #d6336c; /* darker pink for title */
-  }
-
-  .letter img {
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
-  }
-
-  .close-btn {
-    margin-top: 10px;
-    padding: 8px;
-    width: 100%;
-    border: none;
-    background: #ff88a2; /* soft pink button */
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .close-btn:hover {
-    background: #ff5c8d;
-  }
+.envelope {
+  width:200px;
+  height:140px;
+  background:#ffb6c1; /* baby pink */
+  position:relative;
+  cursor:pointer;
+  border-radius:8px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.2);
+  transition:transform 0.3s ease;
+}
+.envelope:hover {
+  transform: scale(1.05);
+}
+.flap {
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:100px solid transparent;
+  border-right:100px solid transparent;
+  border-bottom:70px solid #ff8a9b; /* slightly darker flap */
+  transform-origin:top;
+  transition: transform 0.5s ease;
+}
+.letter {
+  position:absolute;
+  top:10px;
+  left:10px;
+  width:180px;
+  height:120px;
+  background:#fff0f5; /* soft pink letter */
+  border-radius:4px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  padding:12px;
+  box-sizing:border-box;
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+  overflow:auto;
+}
+.open .flap {
+  transform: rotateX(180deg);
+}
+.open .letter {
+  transform: translateY(0);
+}
+h2 {
+  margin:0 0 8px;
+  font-size:1.1rem;
+  color:#ff6b81;
+}
+p {
+  margin:0;
+  font-size:0.95rem;
+  color:#444;
+  white-space:pre-line;
+}
+.letter img {
+  width:100%;
+  border-radius:4px;
+  margin-top:8px;
+}
+.heart {
+  position:fixed;
+  color:#ff6b81;
+  font-size:20px;
+  animation: float 2s linear forwards;
+}
+@keyframes float {
+  0% {opacity:1; transform: translateY(0);}
+  100% {opacity:0; transform: translateY(-120px);}
+}
 </style>
 </head>
 <body>
 
-<div class="envelope" onclick="openLetter()">
-  <div class="flap" id="flap"></div>
-</div>
-
-<div class="letter" id="letterBox">
-  <h3>something suprising</h3>
-  <p>boo!</p>
-
-  <!-- YOUR IMAGE -->
-  <img src="hihi.jpeg" alt="hihi">
-
-  <button class="close-btn" onclick="closeLetter()">Close</button>
+<div class="envelope" id="envelope">
+  <div class="flap"></div>
+  <div class="letter">
+    <h2>something surprising</h2>
+    <p>boo!!</p>
+    <p>mwahaha!</p>
+    <!-- ADD YOUR IMAGE HERE -->
+    <img src="hihi.jpeg" alt="hihi">
+  </div>
 </div>
 
 <script>
-  function openLetter() {
-    // rotate the flap to open
-    document.getElementById("flap").classList.add("open");
-    // show the letter with slide up
-    document.getElementById("letterBox").classList.add("show");
+const envelope = document.getElementById('envelope');
+envelope.addEventListener('click', () => {
+  envelope.classList.toggle('open');
+  if(envelope.classList.contains('open')){
+    releaseHearts();
   }
+});
 
-  function closeLetter() {
-    // rotate flap back to closed
-    document.getElementById("flap").classList.remove("open");
-    // hide the letter
-    document.getElementById("letterBox").classList.remove("show");
+function releaseHearts(){
+  for(let i=0;i<12;i++){
+    setTimeout(()=>{
+      const heart = document.createElement('div');
+      heart.className='heart';
+      heart.style.left = (Math.random()*100) + 'vw';
+      heart.style.top = (window.innerHeight - 20) + 'px';
+      heart.textContent = '💖';
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),2000);
+    }, i*150);
   }
+}
 </script>
-
 </body>
 </html>
+
