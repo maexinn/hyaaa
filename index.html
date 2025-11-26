@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Confession Letter</title>
+<style>
+  body {
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  .envelope {
+    width: 250px;
+    height: 150px;
+    background: #ffddaa;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .envelope:hover {
+    transform: scale(1.05);
+  }
+
+  .flap {
+    width: 0;
+    height: 0;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-bottom: 80px solid #ffce88;
+    position: absolute;
+    top: -80px;
+    left: 0;
+  }
+
+  /* LETTER */
+  .letter {
+    width: 260px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: none;
+  }
+
+  .letter img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  .close-btn {
+    margin-top: 10px;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    background: #ff9688;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="envelope" onclick="openLetter()">
+  <div class="flap"></div>
+</div>
+
+<div class="letter" id="letterBox">
+  <h3>My Confession</h3>
+  <p>
+    I have something to tell you…
+  </p>
+
+  <!-- ⭐ YOUR IMAGE HERE ⭐ -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg" alt="Your Image">
+
+  <button class="close-btn" onclick="closeLetter()">Close</button>
+</div>
+
+<script>
+  function openLetter() {
+    document.getElementById("letterBox").style.display = "block";
+  }
+
+  function closeLetter() {
+    document.getElementById("letterBox").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Confession Letter</title>
+<style>
+  body {
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  .envelope {
+    width: 250px;
+    height: 150px;
+    background: #ffddaa;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .envelope:hover {
+    transform: scale(1.05);
+  }
+
+  .flap {
+    width: 0;
+    height: 0;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-bottom: 80px solid #ffce88;
+    position: absolute;
+    top: -80px;
+    left: 0;
+  }
+
+  /* LETTER */
+  .letter {
+    width: 260px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: none;
+  }
+
+  .letter img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  .close-btn {
+    margin-top: 10px;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    background: #ff9688;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="envelope" onclick="openLetter()">
+  <div class="flap"></div>
+</div>
+
+<div class="letter" id="letterBox">
+  <h3>My Confession</h3>
+  <p>
+    I have something to tell you…
+  </p>
+
+  <!-- ⭐ YOUR IMAGE HERE ⭐ -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Placeholder_view_vector.svg" alt="Your Image">
+
+  <button class="close-btn" onclick="closeLetter()">Close</button>
+</div>
+
+<script>
+  function openLetter() {
+    document.getElementById("letterBox").style.display = "block";
+  }
+
+  function closeLetter() {
+    document.getElementById("letterBox").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
