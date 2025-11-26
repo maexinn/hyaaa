@@ -24,6 +24,7 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     margin-bottom: 50px;
     transition: transform 0.3s;
+    overflow: hidden; /* keeps letter hidden until slide */
   }
 
   .envelope:hover {
@@ -35,10 +36,17 @@
     height: 0;
     border-left: 125px solid transparent;
     border-right: 125px solid transparent;
-    border-bottom: 80px solid #ffa6b0; /* slightly darker baby pink */
+    border-bottom: 80px solid #ffa6b0; /* flap color */
     position: absolute;
     top: -80px;
     left: 0;
+    transition: transform 0.5s ease;
+    transform-origin: top center;
+  }
+
+  /* flap open state */
+  .flap.open {
+    transform: rotateX(180deg);
   }
 
   /* LETTER */
@@ -48,7 +56,15 @@
     background: #fff0f5; /* very soft pink */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: none;
+    position: relative;
+    bottom: -300px; /* start hidden below envelope */
+    opacity: 0;
+    transition: bottom 0.6s ease, opacity 0.6s ease;
+  }
+
+  .letter.show {
+    bottom: 0; /* slide up */
+    opacity: 1;
   }
 
   .letter h3 {
@@ -81,11 +97,11 @@
 <body>
 
 <div class="envelope" onclick="openLetter()">
-  <div class="flap"></div>
+  <div class="flap" id="flap"></div>
 </div>
 
 <div class="letter" id="letterBox">
-  <h3>Something suprising</h3>
+  <h3>something suprising</h3>
   <p>boo!</p>
 
   <!-- YOUR IMAGE -->
@@ -96,11 +112,17 @@
 
 <script>
   function openLetter() {
-    document.getElementById("letterBox").style.display = "block";
+    // rotate the flap to open
+    document.getElementById("flap").classList.add("open");
+    // show the letter with slide up
+    document.getElementById("letterBox").classList.add("show");
   }
 
   function closeLetter() {
-    document.getElementById("letterBox").style.display = "none";
+    // rotate flap back to closed
+    document.getElementById("flap").classList.remove("open");
+    // hide the letter
+    document.getElementById("letterBox").classList.remove("show");
   }
 </script>
 
